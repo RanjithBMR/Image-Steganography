@@ -4,9 +4,13 @@ The technique used here is to apply discrete wavelet transform to obtain the wav
 The dataset is stored in a json file which holds details such as the list of names of the patients, their cover photo, their bio medical detail photo such as their CT-Scan or MRI Scan and the respective passwords for the decoding process to be enabled. Any other data holding files such as csv can also be used. The dataset is loaded into the main file and converted from BGR to RGB formats, and the files are prepared for encoding process.
 
 **A. Mathematical Prelimanaries**
+
 _1) Singular Value Decomposition_
+
 • The SVD of any rectangular matrix produces three unitary matrices U, V and S. U and V are having singular values whereas S singular values are diagonal.
+
 • So, instead of sending a complete message image the proposed technique sending only the S matrix and complete message image could reconstruct using USV matrices. Furthermore, when the image is somewhat disrupted, the diagonal elements of the singular value matrix acquired from singularvalue decomposition do not vary appreciably, indicating that the singular-value decomposition of the matrix is rotation invariant. In this regard, adding the secret image after the image's singularvalue decomposition can boost the algorithm's anti-attack performance.
+
 _2) Discrete Wavelet Transform_
 • DWT is a very popular mathematical tool in the field of signal analysis to decompose any image in low (LL) and high (HH) components.
 • The Low-frequency component contains more information and the high component contains less information. So, any change in a cover image due to data hiding in the HH component causes less distortion in the cover image. HH component of DWT matrix will hold the secret data.
