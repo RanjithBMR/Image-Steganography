@@ -4,7 +4,6 @@ The technique used here is to apply discrete wavelet transform to obtain the wav
 The dataset is stored in a json file which holds details such as the list of names of the patients, their cover photo, their bio medical detail photo such as their CT-Scan or MRI Scan and the respective passwords for the decoding process to be enabled. Any other data holding files such as csv can also be used. The dataset is loaded into the main file and converted from BGR to RGB formats, and the files are prepared for encoding process.
 
 **A. Mathematical Prelimanaries**
-
 _1) Singular Value Decomposition_
 
 • The SVD of any rectangular matrix produces three unitary matrices U, V and S. U and V are having singular values whereas S singular values are diagonal.
