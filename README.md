@@ -18,6 +18,10 @@ _2) Discrete Wavelet Transform_
 
 • DWT has several advantages, including the ability to withstand multiple attacks while maintaining the image's original quality and ensuring the integrity of secret information collected.
 
+• The following image shows DWT Algorithm
+![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/ffd0336e-b432-4916-b41c-022e3cb5ddea)
+
+
 **B. Encoding Process**
 
 _1) Splitting the Red, Green and Blue channels_
@@ -60,5 +64,6 @@ _5) Extract details and apply IDWT to generate steganographic image_
 • Split the processed image into its individual colour channels and pair each channel with its corresponding detail coefficients and store it in a tuple.
 
 • The resulting tuple is taken, and inverse DWT is performed. It reconstructs the image data from the wavelet coefficients, thereby reversing the process of wavelet decomposition.
+
 • The three reconstructed colour channels are merged into a single multi-channel image matrix which is the final steganographic image.
-![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/ed4a47f9-9557-4d31-83c2-ffdd79982b82)
+
