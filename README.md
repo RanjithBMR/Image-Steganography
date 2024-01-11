@@ -1,6 +1,6 @@
 # Image-Steganography
-This is a small scale implementation of image steganography using Signal Processing techniques. The major concepts involved here are the usage of Discrete Wavelet Transform and Singular Value Decomposition.
-The technique used here is to apply discrete wavelet transform to obtain the wavelet coefficient matrices and performing singular value decomposition over them to embed the details of the data image in the cover image. The encoding wavelet used here is “db8” of the Daubechies wavelet for its ability to capture both high-frequency and low-frequency details efficiently, and for analysis across different frequency bands while maintaining a relatively good level of compression.
+This is a small scale implementation of image steganography using Signal Processing techniques. The technique used here is to apply discrete wavelet transform to obtain the wavelet coefficient matrices and performing singular value decomposition over them to embed the details of the data image in the cover image. The encoding wavelet used here is “db8” of the Daubechies wavelet for its ability to capture both high-frequency and low-frequency details efficiently, and for analysis across different frequency bands while maintaining a relatively good level of compression.
+
 The dataset is stored in a json file which holds details such as the list of names of the patients, their cover photo, their bio medical detail photo such as their CT-Scan or MRI Scan and the respective passwords for the decoding process to be enabled. Any other data holding files such as csv can also be used. The dataset is loaded into the main file and converted from BGR to RGB formats, and the files are prepared for encoding process.
 
 **A. Mathematical Prelimanaries**
@@ -8,6 +8,12 @@ The dataset is stored in a json file which holds details such as the list of nam
 _1) Singular Value Decomposition_
 
 • The SVD of any rectangular matrix produces three unitary matrices U, V and S. U and V are having singular values whereas S singular values are diagonal.
+
+•	For example, a 3×3 matrix and its SVD decomposition are given below. It is visible that matrix A, U, V contains 9 elements but matrix S can be represented by principle diagonal elements because non-diagonal elements are zero.
+
+![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/2ae3c18c-998e-45f1-8fca-6147adb2c7d9)
+
+
 
 • So, instead of sending a complete message image the proposed technique sending only the S matrix and complete message image could reconstruct using USV matrices. Furthermore, when the image is somewhat disrupted, the diagonal elements of the singular value matrix acquired from singularvalue decomposition do not vary appreciably, indicating that the singular-value decomposition of the matrix is rotation invariant. In this regard, adding the secret image after the image's singularvalue decomposition can boost the algorithm's anti-attack performance.
 
@@ -21,6 +27,7 @@ _2) Discrete Wavelet Transform_
 • The following image shows DWT Algorithm
 
 ![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/ffd0336e-b432-4916-b41c-022e3cb5ddea)
+
 
 
 **B. Encoding Process**
@@ -68,3 +75,36 @@ _5) Extract details and apply IDWT to generate steganographic image_
 
 • The three reconstructed colour channels are merged into a single multi-channel image matrix which is the final steganographic image.
 
+Flowchart for the encoding process is as follows:
+
+<img width="296" alt="image" src="https://github.com/RanjithBMR/Image-Steganography/assets/147130369/58c7969d-3068-49a1-8976-7f7ee101cd1b">
+
+
+
+**C. Decoding Process**
+
+_1) Check if the password entered by user for the patient and proceed to decode only if the password is correct_
+
+_2) Apply DWT on the stego image_
+
+• Apply DWT as in encoding to obtain the approximate, horizontal, vertical and diagonal coefficient details for all three channels (red, green and blue)
+
+_3) Perform SVD over the coefficient matrices_
+
+• Obtain the left singular value matrices, singular value 1-D array and right singular value matrices.
+
+_4) Reverse the information embedded in the 'D' parameter of the cover image that was performed in encoding process_
+
+_5) Combine the approximations with the hidden SVD values to reconstruct the hidden image_
+
+_6) Pair each colour channel's pixel values with its respective DWT coefficients in a tuple to perform IDWT_
+
+_7) Apply inverse transform to each channel of the image to generate the final hidden information image_
+
+• Hidden stego images get high resolution R,G,B separate images/channels using IDWT
+
+_8) Combine the different high resolution r,g,b to get the final hidden information_
+
+Flowchart for the decoding process is as follows:
+
+![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/6aeadad4-dc6c-4cc6-8f59-4de8232e0d8f)
