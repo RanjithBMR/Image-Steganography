@@ -19,6 +19,7 @@ _2) Discrete Wavelet Transform_
 • DWT has several advantages, including the ability to withstand multiple attacks while maintaining the image's original quality and ensuring the integrity of secret information collected.
 
 • The following image shows DWT Algorithm
+
 ![image](https://github.com/RanjithBMR/Image-Steganography/assets/147130369/ffd0336e-b432-4916-b41c-022e3cb5ddea)
 
 
