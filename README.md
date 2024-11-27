@@ -1,4 +1,4 @@
-# Image-Steganography
+# Image_Steganography
 This is a small scale implementation of image steganography using Signal Processing techniques. The technique used here is to apply discrete wavelet transform to obtain the wavelet coefficient matrices and performing singular value decomposition over them to embed the details of the data image in the cover image. The encoding wavelet used here is “db8” of the Daubechies wavelet for its ability to capture both high-frequency and low-frequency details efficiently, and for analysis across different frequency bands while maintaining a relatively good level of compression.
 
 The dataset is stored in a json file which holds details such as the list of names of the patients, their cover photo, their bio medical detail photo such as their CT-Scan or MRI Scan and the respective passwords for the decoding process to be enabled. Any other data holding files such as csv can also be used. The dataset is loaded into the main file and converted from BGR to RGB formats, and the files are prepared for encoding process.
